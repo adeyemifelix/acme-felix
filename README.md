@@ -1,5 +1,5 @@
-## Next.js App Router Course - Starter
+# acme-felix
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+overview of NEXT.JS
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+I developed and maintained complex, responsive user interfaces that enhanced user experience and engagement. By leveraging React, TypeScript, and modern JavaScript libraries, I ensured robust, maintainable code that met both user and business needs. My attention to detail and commitment to writing clean, efficient code helped streamline processes, ultimately improving application performance and reliability.
