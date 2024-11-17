@@ -1,4 +1,4 @@
-import { inter } from "@/app/ui/fonts";
+import { inter } from "./fonts";
 import {
   AtSymbolIcon,
   KeyIcon,
