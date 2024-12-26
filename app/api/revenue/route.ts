@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@vercel/postgres";
 
-export async function GET_REVENUE() {
+export async function GETREVENUE() {
   const client = await db.connect();
 
   try {

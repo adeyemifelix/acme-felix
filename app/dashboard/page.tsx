@@ -3,8 +3,8 @@ import RevenueChart from "@/app/ui/dashboard/revenue-chart";
 import LatestInvoices from "@/app/ui/dashboard/latest-invoices";
 import { lusitana } from "@/app/ui/fonts";
 import { GET } from "@/app/api/cards/route";
-import { GET_INVOICES } from "@/app/api/invoices/route";
-import { GET_REVENUE } from "@/app/api/revenue/route";
+import { GETINVOICES } from "@/app/api/invoices/route";
+import { GETREVENUE } from "@/app/api/revenue/route";
 import {
   CustomerField,
   CustomersTableType,
@@ -18,8 +18,8 @@ import {
 
 export default async function Page() {
 
-  const res = await GET_REVENUE();
-  const resInvoices = await GET_INVOICES();
+  const res = await GETREVENUE();
+  const resInvoices = await GETINVOICES();
   const resCards = await GET();
 
   const revenue: Revenue[] = await res.json();
