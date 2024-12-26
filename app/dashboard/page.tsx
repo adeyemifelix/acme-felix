@@ -2,6 +2,9 @@ import { Card } from "@/app/ui/dashboard/cards";
 import RevenueChart from "@/app/ui/dashboard/revenue-chart";
 import LatestInvoices from "@/app/ui/dashboard/latest-invoices";
 import { lusitana } from "@/app/ui/fonts";
+import { GET } from "@/app/api/cards/route";
+import { GET_INVOICES } from "@/app/api/invoices/route";
+import { GET_REVENUE } from "@/app/api/revenue/route";
 import {
   CustomerField,
   CustomersTableType,
@@ -15,18 +18,9 @@ import {
 
 export default async function Page() {
 
-   const res = await fetch("http://localhost:3000/api/revenue", { cache: "no-store" });
-  if (!res.ok) {
-    throw new Error("Failed to fetch revenue data");
-  }
-   const resInvoices = await fetch("http://localhost:3000/api/invoices", { cache: "no-store" });
-  if (!res.ok) {
-    throw new Error("Failed to fetch invoices data");
-  }
-   const resCards = await fetch("http://localhost:3000/api/cards", { cache: "no-store" });
-  if (!res.ok) {
-    throw new Error("Failed to fetch cards data");
-  }
+  const res = await GET_REVENUE();
+  const resInvoices = await GET_INVOICES();
+  const resCards = await GET();
 
   const revenue: Revenue[] = await res.json();
   const latestInvoices: LatestInvoice[] = await resInvoices.json();
