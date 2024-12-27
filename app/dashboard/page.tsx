@@ -15,16 +15,29 @@ import {
   LatestInvoiceRaw,
   Revenue,
 } from "@/app/lib/definitions";
+import {
+  fetchRevenue,
+  fetchLatestInvoices,
+  fetchCardData,
+} from "@/app/lib/data";
 
 export default async function Page() {
 
-  const res = await GETREVENUE();
-  const resInvoices = await GETINVOICES();
-  const resCards = await GET();
+  // const res = await GETREVENUE();
+  const revenue = await fetchRevenue();
+  const latestInvoices = await fetchLatestInvoices();
+    const {
+      numberOfInvoices,
+      numberOfCustomers,
+      totalPaidInvoices,
+      totalPendingInvoices,
+    } = await fetchCardData();
+  // const resInvoices = await GETINVOICES();
+  // const resCards = await GET();
 
-  const revenue: Revenue[] = await res.json();
-  const latestInvoices: LatestInvoice[] = await resInvoices.json();
-  const cards: Cards[] = await resCards.json();
+  // const revenue: Revenue[] = await res.json();
+  // const latestInvoices: LatestInvoice[] = await resInvoices.json();
+  // const cards: Cards[] = await resCards.json();
 
   
   return (
@@ -33,30 +46,16 @@ export default async function Page() {
         Dashboard
       </h1>
 
-      {cards.map((card, index) => (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" key={index}>
-          <Card
-            title="Collected"
-            value={card.totalPaidInvoices}
-            type="collected"
-          />
-          <Card
-            title="Pending"
-            value={card.totalPendingInvoices}
-            type="pending"
-          />
-          <Card
-            title="Total Invoices"
-            value={card.numberOfInvoices}
-            type="invoices"
-          />
-          <Card
-            title="Total Customers"
-            value={card.numberOfCustomers}
-            type="customers"
-          />
-        </div>
-      ))}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Card title="Collected" value={totalPaidInvoices} type="collected" />
+        <Card title="Pending" value={totalPendingInvoices} type="pending" />
+        <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+        <Card
+          title="Total Customers"
+          value={numberOfCustomers}
+          type="customers"
+        />
+      </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
         <RevenueChart revenue={revenue} />
