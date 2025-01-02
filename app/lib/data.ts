@@ -146,8 +146,9 @@ export async function fetchInvoicesPages(query: string) {
 }
 
 export async function fetchInvoiceById(id: string) {
+  const client = await db.connect();
   try {
-    const data = await sql<InvoiceForm>`
+    const data = await client.sql<InvoiceForm>`
       SELECT
         invoices.id,
         invoices.customer_id,
@@ -171,8 +172,9 @@ export async function fetchInvoiceById(id: string) {
 }
 
 export async function fetchCustomers() {
+  const client = await db.connect();
   try {
-    const data = await sql<CustomerField>`
+    const data = await client.sql<CustomerField>`
       SELECT
         id,
         name
